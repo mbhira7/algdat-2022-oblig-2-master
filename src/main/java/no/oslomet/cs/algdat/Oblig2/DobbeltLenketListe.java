@@ -80,8 +80,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int indeksTil(T verdi) {
-        throw new UnsupportedOperationException();
+
+       // throw new UnsupportedOperationException();
     }
+
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
