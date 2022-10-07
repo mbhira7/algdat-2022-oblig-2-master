@@ -58,6 +58,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+    //
     @Override
     public boolean leggInn(T verdi) {
         throw new UnsupportedOperationException();
@@ -88,6 +89,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+
     @Override
     public boolean fjern(T verdi) {
         throw new UnsupportedOperationException();
@@ -100,7 +102,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void nullstill() {
-        throw new UnsupportedOperationException();
+        // ANDRE METODEN
+        int toDelete = antall;
+        if (antall > 0) {
+            for(int i = 0; i < toDelete; i++) {
+                fjern(0);
+            }
+            antall = 0;
+            endringer++;
+        }
     }
 
     @Override
