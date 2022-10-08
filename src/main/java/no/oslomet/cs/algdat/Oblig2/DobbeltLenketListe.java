@@ -15,6 +15,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
      *
      * @param <T>
      */
+
     private static final class Node<T> {
         private T verdi;                   // nodens verdi
         private Node<T> forrige, neste;    // pekere
@@ -37,8 +38,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int endringer;         // antall endringer i listen
 
     public DobbeltLenketListe() {
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
     }
+
 
     public DobbeltLenketListe(T[] a) {
         throw new UnsupportedOperationException();
@@ -49,13 +51,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     @Override
-    public int antall() {
+    public <T> int antall(T[] a) {
         throw new UnsupportedOperationException();
+
+        for(int i=0; i<a.length;i++){
+            antall++;
+        }
     }
 
     @Override
-    public boolean tom() {
-        throw new UnsupportedOperationException();
+    public boolean tom(Integer a) {
+        //throw new UnsupportedOperationException();
+
+        if(a < 1) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -81,7 +92,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public int indeksTil(T verdi) {
 
-       // throw new UnsupportedOperationException();
+       throw new UnsupportedOperationException();
     }
 
 
