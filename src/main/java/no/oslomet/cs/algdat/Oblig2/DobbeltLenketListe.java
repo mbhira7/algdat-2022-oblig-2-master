@@ -5,7 +5,9 @@ package no.oslomet.cs.algdat.Oblig2;
 
 
 import java.util.Comparator;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -58,6 +60,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+    //
     @Override
     public boolean leggInn(T verdi) {
         throw new UnsupportedOperationException();
@@ -88,6 +91,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+
     @Override
     public boolean fjern(T verdi) {
         throw new UnsupportedOperationException();
@@ -100,7 +104,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void nullstill() {
-        throw new UnsupportedOperationException();
+        // ANDRE METODEN
+        int toDelete = antall;
+        if (antall > 0) {
+            for(int i = 0; i < toDelete; i++) {
+                fjern(0);
+            }
+            antall = 0;
+            endringer++;
+        }
     }
 
     @Override
@@ -114,11 +126,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public Iterator<T> iterator() {
-        throw new UnsupportedOperationException();
+        return new DobbeltLenketListeIterator();
     }
 
     public Iterator<T> iterator(int indeks) {
-        throw new UnsupportedOperationException();
+        return new DobbeltLenketListeIterator(indeks);
     }
 
     private class DobbeltLenketListeIterator implements Iterator<T> {
@@ -133,7 +145,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         private DobbeltLenketListeIterator(int indeks) {
-            throw new UnsupportedOperationException();
+            indeksKontroll(indeks, false);
+            denne = finnNode(indeks - 1);
+            fjernOK = false;
+            iteratorendringer = endringer;
         }
 
         @Override
@@ -143,7 +158,23 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public T next() {
-            throw new UnsupportedOperationException();
+            if(endringer != iteratorendringer) {
+                throw new ConcurrentModificationException();
+            }
+            if(!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            T verdi;
+            fjernOK = true;
+            if(denne.neste.neste == null) {
+                verdi = denne.neste.verdi;
+                denne = null;
+            }
+            else {
+                verdi = denne.neste.verdi;
+                denne = denne.neste;
+            }
+            return verdi;
         }
 
         @Override
