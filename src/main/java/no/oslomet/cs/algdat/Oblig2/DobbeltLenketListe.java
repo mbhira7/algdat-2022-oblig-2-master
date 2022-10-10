@@ -4,10 +4,7 @@ package no.oslomet.cs.algdat.Oblig2;
 ////////////////// class DobbeltLenketListe //////////////////////////////
 
 
-import java.util.Comparator;
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -39,34 +36,64 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int endringer;         // antall endringer i listen
 
     public DobbeltLenketListe() {
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
     }
 
     public DobbeltLenketListe(T[] a) {
         //throw new UnsupportedOperationException();
+        /* if (a.length == 0){
+            throw new NullPointerException("Tabellen a er null!");
+        } */
 
         for (int i = 0;i < a.length;i++){
             if (a[i] != null){
-
-            Node<T> p = new Node(a[i]);
-            if (hode == null){
-                hode = hale = p;
-                hode.forrige = null;
-                hale.neste = null;
-            }
-            else {
-                hale.neste = p;
-                p.forrige = hale;
-                hale = p;
-                hale.neste = null;
-            }
-            antall++;
+                Node<T> p = new Node(a[i]);
+                if (hode == null){
+                    hode = hale = p;
+                    hode.forrige = null;
+                    hale.neste = null;
+                }
+                else {
+                    hale.neste = p;
+                    p.forrige = hale;
+                    hale = p;
+                    hale.neste = null;
+                }
+                antall++;
             }
         }
     }
 
+    private void fratilKontroll(int lengde, int fra, int til){
+        if (fra < 0){
+            throw new IndexOutOfBoundsException("fra(" + fra + ") er negativ!");
+        }
+        if (til > lengde)
+            throw new IndexOutOfBoundsException("til(" + til + ") > tablengde(" + lengde + ")");
+
+        if (fra > til){
+            throw new IllegalArgumentException("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
+        }
+    }
+
     public Liste<T> subliste(int fra, int til) {
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
+
+        fratilKontroll(antall,fra,til);
+        Liste<T> liste = new DobbeltLenketListe<>();
+        int lengde = til - fra;
+
+        if (lengde < 1){
+            return liste;
+        }
+        Node<T> p = finnNode(fra);
+
+        while (lengde > 0){
+            liste.leggInn(p.verdi);
+            p = p.neste;
+            lengde--;
+        }
+        return liste;
     }
 
     @Override
@@ -78,13 +105,51 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean tom() {
         //throw new UnsupportedOperationException();
-        return false;
+        if (hode == null){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     //
     @Override
     public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
+        Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
+        Node<T> p = new Node<>(verdi);
+        if (antall == 0){
+            hode = hale = p;
+            hode.forrige = null;
+            hale.neste = null;
+        }
+        else {
+            hale.neste = p;
+            p.forrige = hale;
+            hale = p;
+            hale.neste = null;
+        }
+        antall++;
+        endringer++;
+        return true;
+    }
+
+    private Node<T> finnNode(int indeks){
+        Node<T> p;
+        if (indeks < antall/2){
+            p = hode;
+            for (int i = 0;i < indeks;i++){
+                p = p.neste;
+            }
+        }
+        else {
+            p = hale;
+            for (int i = antall - 1;i > indeks;i--){
+                p = p.forrige;
+            }
+        }
+        return p;
     }
 
     @Override
@@ -99,7 +164,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
+        indeksKontroll(indeks,false);
+        return finnNode(indeks).verdi;
     }
 
     @Override
@@ -109,7 +176,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
+        Objects.requireNonNull(nyverdi,"Ikke tillat med null-verdier!");
+        indeksKontroll(indeks,false);
+
+        Node<T> p = finnNode(indeks);
+        T gammelverdi = p.verdi;
+        p.verdi = nyverdi;
+        endringer++;
+        return gammelverdi;
     }
 
 
@@ -169,9 +244,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
         t.append(']');
         return t.toString();
-
-
-
     }
 
     @Override
