@@ -41,9 +41,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     public DobbeltLenketListe(T[] a) {
         //throw new UnsupportedOperationException();
-        /* if (a.length == 0){
+        if (a == null){
             throw new NullPointerException("Tabellen a er null!");
-        } */
+        }
 
         for (int i = 0;i < a.length;i++){
             if (a[i] != null){
