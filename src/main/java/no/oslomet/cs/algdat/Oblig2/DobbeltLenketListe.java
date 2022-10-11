@@ -112,81 +112,78 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public boolean tom(Integer a) {
         //throw new UnsupportedOperationException();
 
-        if(a < 1) {
+        if (a < 1) {
             return false;
         }
         return true;
 =======
-    public int antall() {
-        //throw new UnsupportedOperationException();
-        return antall;
-    }
+        public int antall () {
+            //throw new UnsupportedOperationException();
+            return antall;
+        }
 
-    @Override
-    public boolean tom() {
-        //throw new UnsupportedOperationException();
-        if (hode == null){
+        @Override
+        public boolean tom () {
+            //throw new UnsupportedOperationException();
+            if (hode == null) {
+                return true;
+            } else {
+                return false;
+            }
+>>>>>>>5e9 e446d62e80e44b6172f20c59648bee971eff0
+        }
+
+        //
+        @Override
+        public boolean leggInn (T verdi){
+            //throw new UnsupportedOperationException();
+            Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
+            Node<T> p = new Node<>(verdi);
+            if (antall == 0) {
+                hode = hale = p;
+                hode.forrige = null;
+                hale.neste = null;
+            } else {
+                hale.neste = p;
+                p.forrige = hale;
+                hale = p;
+                hale.neste = null;
+            }
+            antall++;
+            endringer++;
             return true;
         }
-        else {
-            return false;
-        }
->>>>>>> 5e9e446d62e80e44b6172f20c59648bee971eff0
-    }
 
-    //
-    @Override
-    public boolean leggInn(T verdi) {
-        //throw new UnsupportedOperationException();
-        Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
-        Node<T> p = new Node<>(verdi);
-        if (antall == 0){
-            hode = hale = p;
-            hode.forrige = null;
-            hale.neste = null;
-        }
-        else {
-            hale.neste = p;
-            p.forrige = hale;
-            hale = p;
-            hale.neste = null;
-        }
-        antall++;
-        endringer++;
-        return true;
-    }
-
-    private Node<T> finnNode(int indeks){
-        Node<T> p;
-        if (indeks < antall/2){
-            p = hode;
-            for (int i = 0;i < indeks;i++){
-                p = p.neste;
+        private Node<T> finnNode ( int indeks){
+            Node<T> p;
+            if (indeks < antall / 2) {
+                p = hode;
+                for (int i = 0; i < indeks; i++) {
+                    p = p.neste;
+                }
+            } else {
+                p = hale;
+                for (int i = antall - 1; i > indeks; i--) {
+                    p = p.forrige;
+                }
             }
+            return p;
         }
-        else {
-            p = hale;
-            for (int i = antall - 1;i > indeks;i--){
-                p = p.forrige;
-            }
-        }
-        return p;
-    }
 
-    @Override
-    public void leggInn(int indeks, T verdi) {
-        //throw new UnsupportedOperationException();
+        @Override
+        public void leggInn ( int indeks, T verdi){
+            //throw new UnsupportedOperationException();
 
         /*
             1. Bruk finnNode(int indeks) til å finne Node p
             2. p.neste gir r
             3. Oppretter noden q
          */
-    }
+        }
 
-    @Override
-    public boolean inneholder(T verdi) {
-
+        @Override
+        public boolean inneholder(T verdi){
+            return indeksTil(verdi) != -1;
 
         }
         //throw new UnsupportedOperationException();
@@ -203,7 +200,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public int indeksTil(T verdi) {
         if (verdi == null) return -1;
 
-        Node <T> p==hode;
+        Node <T> p=hode;
         for (int i = 0; i < antall; i++, p=p.neste)
         {
             if (p.verdi.equals(verdi))return i;
