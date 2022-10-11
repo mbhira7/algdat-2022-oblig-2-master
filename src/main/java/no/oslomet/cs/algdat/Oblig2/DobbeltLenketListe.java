@@ -154,7 +154,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void leggInn(int indeks, T verdi) {
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
+
+        /*
+            1. Bruk finnNode(int indeks) til å finne Node p
+            2. p.neste gir r
+            3. Oppretter noden q
+         */
     }
 
     @Override
