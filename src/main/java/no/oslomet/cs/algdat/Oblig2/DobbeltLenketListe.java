@@ -155,41 +155,46 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public void leggInn(int indeks, T verdi) {
         //throw new UnsupportedOperationException();
-        if(verdi == null){
+        if(verdi == null) {
             throw new NullPointerException("Verdi kan ikke være null!");
         }
-        if(indeks >= 0 && indeks <= antall) {
-            Node<T> q = new Node<>(verdi);
-            if(tom()) {
-                hode = hale = q;
-                hode.forrige = null;
-                hode.neste = null;
-            }
-            else{
-                if(indeks == 0) {
-                    hode.forrige = q;
-                    q.neste = hode;
-                    hode = q;
-                    hode.forrige = null;
-                }
-                else if(indeks == antall) {
-                    hale.neste = q;
-                    q.forrige = hale;
-                    hale = q;
-                    hale.neste = null;
-                }
-                else{
-                    Node<T> p = finnNode(indeks);
-                    Node<T> r = p.neste;
-                    p.neste = q;
-                    q.forrige = p;
-                    q.neste = r;
-                    r.forrige = q;
-                }
-            }
-            antall++;
-            endringer++;
+        if(indeks < 0 || indeks > antall) {
+            throw new IndexOutOfBoundsException("Indeks kan ikke være mindre enn 0 eller større enn antall");
         }
+
+        Node<T> q = new Node<>(verdi);
+        if(tom()) {
+            hode = hale = q;
+            hode.forrige = null;
+            hode.neste = null;
+        }
+
+        else{
+            if(indeks == 0) {
+                hode.forrige = q;
+                q.neste = hode;
+                hode = q;
+                hode.forrige = null;
+            }
+
+            else if(indeks == antall) {
+                hale.neste = q;
+                q.forrige = hale;
+                hale = q;
+                hale.neste = null;
+            }
+
+            else{
+                Node<T> p = finnNode(indeks);
+                Node<T> r = p.neste;
+                p.neste = q;
+                q.forrige = p;
+                q.neste = r;
+                r.forrige = q;
+            }
+        }
+        antall++;
+        endringer++;
     }
 
     @Override
