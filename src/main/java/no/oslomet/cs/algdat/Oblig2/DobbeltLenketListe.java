@@ -64,7 +64,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
     }
 
-    private void fratilKontroll(int lengde, int fra, int til){
+    private void fratilKontroll(int lengde, int fra, int til){ //Kilde: Kompendiet, programkode 1.2.3 a)
         if (fra < 0){
             throw new IndexOutOfBoundsException("fra(" + fra + ") er negativ!");
         }
@@ -163,7 +163,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     @Override
-    public T hent(int indeks) {
+    public T hent(int indeks) { //Kilde: Kompendiet, programkode 3.3.3 b)
         //throw new UnsupportedOperationException();
         indeksKontroll(indeks,false);
         return finnNode(indeks).verdi;
@@ -175,7 +175,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     @Override
-    public T oppdater(int indeks, T nyverdi) {
+    public T oppdater(int indeks, T nyverdi) { //Kilde: Kompendiet, programkode 3.3.3 b)
         //throw new UnsupportedOperationException();
         Objects.requireNonNull(nyverdi,"Ikke tillat med null-verdier!");
         indeksKontroll(indeks,false);
