@@ -81,12 +81,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
     }
 
-    private void fratilKontroll(int lengde, int fra, int til){ //Kilde: Kompendiet, programkode 1.2.3 a)
+    private void fratilKontroll(int antall, int fra, int til){ //Kilde: Kompendiet, programkode 1.2.3 a)
         if (fra < 0){
             throw new IndexOutOfBoundsException("fra(" + fra + ") er negativ!");
         }
-        if (til > lengde)
-            throw new IndexOutOfBoundsException("til(" + til + ") > tablengde(" + lengde + ")");
+        if (til > antall)
+            throw new IndexOutOfBoundsException("til(" + til + ") > antall(" + antall + ")");
 
         if (fra > til){
             throw new IllegalArgumentException("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
