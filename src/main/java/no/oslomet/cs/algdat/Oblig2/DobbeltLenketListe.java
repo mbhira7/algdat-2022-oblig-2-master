@@ -252,8 +252,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean fjern(T verdi) {
         throw new UnsupportedOperationException();
-
-        /*Finne noden med verdien sendt inn*/
     }
 
     @Override
