@@ -38,3 +38,12 @@ T hent(int indeks) bruker finnNode(int indeks) for å returnere verdien til node
 T oppdater(int indeks, T nyverdi) bytter ut en en verdi på plass indeks, med en ny verdi.
 Liste<T> subliste(int fra, int til) lager en ny liste i intervallet [fra,til) og legger til elementer med leggInn(verdi).
 Vi bruker fratilKontroll() for å passe på at intervallet er gyldig.
+
+I oppgave 9 brukte jeg metoden void remove() i iterator klassen. Hvis det ikke er tillat å kalle på metoden blir det kastet en
+IllegalStateException. Hvis det viser seg at endringer er ulike kastes det Concurrrent-ModificiationException.
+Hvis den passerer de to første testene skal fjernOk settes til false og noden fjernes. Ellers er det veldig rett frem om verdien
+(antall==1) skal fjernes så nulles hode og hale ut. mens hvis den siste (denne == null ) så må hale oppdateres. Hvis en noden i listen
+skal fjernes, så må pekerne på hver side oppdateres. 
+
+I oppgave 10 så brukte jeg en metoden sorter(Liste<T> liste, Comperator<? super T > c). Denne sorterer listen
+ved bruk av en comperator. Her bruker man for loops og literer.
