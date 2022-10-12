@@ -360,9 +360,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return verdi;
         }
 
-        @Override
+        @Override // oppgave 9
         public void remove() {
-            throw new UnsupportedOperationException();
+
+            if (!fjernOK) throw
+                    new IllegalStateException("Verdien blir ikke fjernet!");
+
+            if (iteratorendringer != endringer) throw
+                    new ConcurrentModificationException("Listen er endret!");
+
+            fjernOK = false;
+
+            fjernNode(denne == null ? hale : denne.forrige);
+            iteratorendringer++;
         }
 
     } // class DobbeltLenketListeIterator
