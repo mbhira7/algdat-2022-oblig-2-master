@@ -293,14 +293,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void nullstill() {
-        // ANDRE METODEN
-        int toDelete = antall;
-        if (antall > 0) {
-            for(int i = 0; i < toDelete; i++) {
-                fjern(0);
-            }
-            antall = 0;
-            endringer++;
+        int startAntall = antall;
+        for (int i = 0; i < startAntall; i++) {
+            fjern(0);
         }
     }
 
@@ -345,6 +340,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Iterator<T> iterator(int indeks) {
+        indeksKontroll(indeks, false);
         return new DobbeltLenketListeIterator(indeks);
     }
 
@@ -360,10 +356,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         private DobbeltLenketListeIterator(int indeks) {
-            /*indeksKontroll(indeks, false);
-            denne = finnNode(indeks - 1);
+            denne = finnNode(indeks);
             fjernOK = false;
-            iteratorendringer = endringer; */
+            iteratorendringer = endringer;
         }
 
         @Override
@@ -373,23 +368,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public T next() {
-            if(endringer != iteratorendringer) {
-                throw new ConcurrentModificationException();
+            if(iteratorendringer != endringer) {
+                throw new ConcurrentModificationException("Iteratorendringer er ikke lik endringer");
             }
-            if(!hasNext()) {
-                throw new NoSuchElementException();
+            if(hasNext() != true) {
+                throw new NoSuchElementException("Det er ikke fler igjen i listen");
             }
-            T verdi;
+
             fjernOK = true;
-            if(denne.neste.neste == null) {
-                verdi = denne.neste.verdi;
-                denne = null;
-            }
-            else {
-                verdi = denne.neste.verdi;
-                denne = denne.neste;
-            }
-            return verdi;
+            T denneVerdi = denne.verdi;
+            denne = denne.neste;
+            return denneVerdi;
         }
 
         @Override // oppgave 9
