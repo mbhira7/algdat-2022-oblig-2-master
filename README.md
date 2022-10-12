@@ -6,12 +6,14 @@ Oppgaven er levert av følgende studenter:
 * Hoda Saoudi, s362114, s362114@oslomet.no
 * Konrad Przemyslaw dabrowski, s366446, s366446@oslomet.no
 * Amalie Johnsen Aase, s364682, s364682@oslomet.no
+* Bhiravina Mahesaratnam, s334895, s334895@oslomet.no
 
 # Arbeidsfordeling
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
 * Kaja har hatt ansvar for oppgave 2 og 3.
 * Konrad har hatt ansvar for oppgave 9 og 10.
+* Bhiravina har hatt ansvar for oppgave 5 og 6.
 
 # Oppgavebeskrivelse
 
@@ -39,6 +41,11 @@ T hent(int indeks) bruker finnNode(int indeks) for å returnere verdien til node
 T oppdater(int indeks, T nyverdi) bytter ut en en verdi på plass indeks, med en ny verdi.
 Liste<T> subliste(int fra, int til) lager en ny liste i intervallet [fra,til) og legger til elementer med leggInn(verdi).
 Vi bruker fratilKontroll() for å passe på at intervallet er gyldig.
+
+I oppgave 5 bruker jeg metoden finnNode(int indeks) for å finne Noden p. Jeg oppretter så en ny Node q med verdien vi får som parameter.
+Dersom listen er tom opprettes det en ny Node. Hvis listen ikke er tom og 
+indeks er lik 0 legges Noden q inn på starten av lista. Dersom indeks er lik antall legges q på slutten. 
+Dersom indeks verken er lik 0 eller antall legges q mellom de to Nodene p og r.
 
 I oppgave 9 brukte jeg metoden void remove() i iterator klassen. Hvis det ikke er tillat å kalle på metoden blir det kastet en
 IllegalStateException. Hvis det viser seg at endringer er ulike kastes det Concurrrent-ModificiationException.
