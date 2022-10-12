@@ -3,7 +3,8 @@
 Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
 Oppgaven er levert av følgende studenter:
 * Kaja Line Åbyholm Reehorst, s358385, s358385@oslomet.no
-* Hoda Saoudi, s362114, s362114@oslomet.no 
+* Hoda Saoudi, s362114, s362114@oslomet.no .
+* Konrad Przemyslaw dabrowski, s366446, s366446@oslomet.no
 * Konrad Przemyslaw dabrowski, s366446, s366446@oslomet.no
 
 # Arbeidsfordeling
