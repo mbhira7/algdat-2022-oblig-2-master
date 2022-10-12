@@ -216,7 +216,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean inneholder(T verdi) {
-        return indeksTil(verdi) != -1;
+        return indeksTil(verdi) != -1;   //returnerer true eller false dersom om listen er tom eller ikke
         //throw new UnsupportedOperationException();
     }
 
@@ -229,7 +229,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int indeksTil(T verdi) {
-        if (verdi == null) return -1;
+        if (verdi == null) return -1; //sjekker om det sendes inn nullverdier
 
         Node<T> p = hode;
         for (int i = 0; i < antall; i++, p = p.neste) {
