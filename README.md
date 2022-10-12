@@ -46,4 +46,4 @@ Hvis den passerer de to første testene skal fjernOk settes til false og noden f
 skal fjernes, så må pekerne på hver side oppdateres. 
 
 I oppgave 10 så brukte jeg en metoden sorter(Liste<T> liste, Comperator<? super T > c). Denne sorterer listen
-ved bruk av en comperator. Her bruker man for loops og literer.
+ved bruk av en comperator. Her bruker man for loops og if statements.
