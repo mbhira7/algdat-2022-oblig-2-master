@@ -35,6 +35,23 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int antall;            // antall noder i listen
     private int endringer;         // antall endringer i listen
 
+    //lager en hjelpemetode som skal brukes i oppgave 9
+    private T fjernNode(Node<T> p)
+    {
+        if (p == hode)
+        {
+            if (antall == 1) hode = hale = null;
+            else (hode = hode.neste).forrige = null;
+        }
+        else if (p == hale) (hale = hale.forrige).neste = null;
+        else (p.forrige.neste = p.neste).forrige = p.forrige;
+
+        antall--;
+        endringer++;
+
+        return p.verdi;
+    }
+
     public DobbeltLenketListe() {
         //throw new UnsupportedOperationException();
     }
