@@ -106,24 +106,23 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             antall++;
         }
 =======
-    public int antall() {
-        //throw new UnsupportedOperationException();
-        return antall;
->>>>>>> fd13cf79a350b5bf01419ef04f1e11995e47c519
-    }
-
-    @Override
-    public boolean tom() {
-        //throw new UnsupportedOperationException();
-        if (hode == null){
-            return true;
+        public int antall () {
+            //throw new UnsupportedOperationException();
+            return antall;
+>>>>>>>fd13cf79a350b5bf01419ef04f1e11995e47c519
         }
-        else {
-            return false;
-        }
-    }
 
-<<<<<<< HEAD
+        @Override
+        public boolean tom () {
+            //throw new UnsupportedOperationException();
+            if (hode == null) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+<<<<<<<HEAD
         @Override
         public void leggInn ( int indeks, T verdi){
             //throw new UnsupportedOperationException();
@@ -141,105 +140,107 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return indeksTil(verdi) != -1;
             //throw new UnsupportedOperationException();
 =======
-    //
-    @Override
-    public boolean leggInn(T verdi) {
-        //throw new UnsupportedOperationException();
-        Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
-        Node<T> p = new Node<>(verdi);
-        if (antall == 0){
-            hode = hale = p;
-            hode.forrige = null;
-            hale.neste = null;
-        }
-        else {
-            hale.neste = p;
-            p.forrige = hale;
-            hale = p;
-            hale.neste = null;
-        }
-        antall++;
-        endringer++;
-        return true;
-    }
-
-    private Node<T> finnNode(int indeks){
-        Node<T> p;
-        if (indeks < antall/2){
-            p = hode;
-            for (int i = 0;i < indeks;i++){
-                p = p.neste;
-            }
-        }
-        else {
-            p = hale;
-            for (int i = antall - 1;i > indeks;i--){
-                p = p.forrige;
-            }
-        }
-        return p;
-    }
-
-    @Override
-    public void leggInn(int indeks, T verdi) {
-        //throw new UnsupportedOperationException();
-        if(verdi == null) {
-            throw new NullPointerException("Verdi kan ikke være null!");
-        }
-        if(indeks < 0 || indeks > antall) {
-            throw new IndexOutOfBoundsException("Indeks kan ikke være mindre enn 0 eller større enn antall");
-        }
-
-        Node<T> q = new Node<>(verdi);
-        if(tom()) {
-            hode = hale = q;
-            hode.forrige = null;
-            hode.neste = null;
-        }
-
-        else{
-            if(indeks == 0) {
-                hode.forrige = q;
-                q.neste = hode;
-                hode = q;
-                hode.forrige = null;
+            //
+            @Override
+            public boolean leggInn (T verdi){
+                //throw new UnsupportedOperationException();
+                Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
+                Node<T> p = new Node<>(verdi);
+                if (antall == 0) {
+                    hode = hale = p;
+                    hode.forrige = null;
+                    hale.neste = null;
+                } else {
+                    hale.neste = p;
+                    p.forrige = hale;
+                    hale = p;
+                    hale.neste = null;
+                }
+                antall++;
+                endringer++;
+                return true;
             }
 
-            else if(indeks == antall) {
-                hale.neste = q;
-                q.forrige = hale;
-                hale = q;
-                hale.neste = null;
+            private Node<T> finnNode ( int indeks){
+                Node<T> p;
+                if (indeks < antall / 2) {
+                    p = hode;
+                    for (int i = 0; i < indeks; i++) {
+                        p = p.neste;
+                    }
+                } else {
+                    p = hale;
+                    for (int i = antall - 1; i > indeks; i--) {
+                        p = p.forrige;
+                    }
+                }
+                return p;
             }
 
-            else{
-                Node<T> p = finnNode(indeks);
-                Node<T> r = p.neste;
-                p.neste = q;
-                q.forrige = p;
-                q.neste = r;
-                r.forrige = q;
+            @Override
+            public void leggInn ( int indeks, T verdi){
+                //throw new UnsupportedOperationException();
+                if (verdi == null) {
+                    throw new NullPointerException("Verdi kan ikke være null!");
+                }
+                if (indeks < 0 || indeks > antall) {
+                    throw new IndexOutOfBoundsException("Indeks kan ikke være mindre enn 0 eller større enn antall");
+                }
+
+                Node<T> q = new Node<>(verdi);
+                if (tom()) {
+                    hode = hale = q;
+                    hode.forrige = null;
+                    hode.neste = null;
+                } else {
+                    if (indeks == 0) {
+                        hode.forrige = q;
+                        q.neste = hode;
+                        hode = q;
+                        hode.forrige = null;
+                    } else if (indeks == antall) {
+                        hale.neste = q;
+                        q.forrige = hale;
+                        hale = q;
+                        hale.neste = null;
+                    } else {
+                        Node<T> p = finnNode(indeks);
+                        Node<T> r = p.neste;
+                        p.neste = q;
+                        q.forrige = p;
+                        q.neste = r;
+                        r.forrige = q;
+                    }
+                }
+                antall++;
+                endringer++;
             }
+
+            @Override
+            public boolean inneholder (T verdi){
+                return indeksTil(verdi) != -1;
+            }
+            //    throw new UnsupportedOperationException();
         }
-        antall++;
-        endringer++;
-    }
 
-    @Override
-    public boolean inneholder(T verdi) {
-        throw new UnsupportedOperationException();
-    }
+        @Override
+        public T hent ( int indeks){ //Kilde: Kompendiet, programkode 3.3.3 b)
+            //throw new UnsupportedOperationException();
+            indeksKontroll(indeks, false);
+            return finnNode(indeks).verdi;
+        }
 
-    @Override
-    public T hent(int indeks) { //Kilde: Kompendiet, programkode 3.3.3 b)
-        //throw new UnsupportedOperationException();
-        indeksKontroll(indeks,false);
-        return finnNode(indeks).verdi;
-    }
+        @Override
+        public int indeksTil (T verdi){
+            if (verdi == null) return -1;
 
-    @Override
-    public int indeksTil(T verdi) {
-        throw new UnsupportedOperationException();
+            Node<T> p = hode;
+            for (int i = 0; i < antall; i++, p = p.neste) {
+                if (p.verdi.equals(verdi)) return 1;
+            }
+            return -1;
+        }
+        // throw new UnsupportedOperationException();
     }
 
     @Override
