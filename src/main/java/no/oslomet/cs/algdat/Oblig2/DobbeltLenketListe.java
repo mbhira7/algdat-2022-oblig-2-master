@@ -96,8 +96,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     @Override
-<<<<<<< HEAD
-<<<<<<<HEAD
+
 
     public <T> int antall(T[] a) {
         throw new UnsupportedOperationException();
@@ -105,11 +104,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         for (int i = 0; i < a.length; i++) {
             antall++;
         }
-=======
+
         public int antall () {
             //throw new UnsupportedOperationException();
             return antall;
->>>>>>>fd13cf79a350b5bf01419ef04f1e11995e47c519
+
         }
 
         @Override
@@ -122,7 +121,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
         }
 
-<<<<<<<HEAD
+
         @Override
         public void leggInn ( int indeks, T verdi){
             //throw new UnsupportedOperationException();
@@ -135,11 +134,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         @Override
-        public boolean inneholder;
-        (T verdi){
+        public boolean inneholder (T verdi){
             return indeksTil(verdi) != -1;
             //throw new UnsupportedOperationException();
-=======
+
             //
             @Override
             public boolean leggInn (T verdi){
@@ -232,16 +230,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public int indeksTil (T verdi){
-            if (verdi == null) return -1;
+            if (verdi == null)
+                return -1;
 
             Node<T> p = hode;
             for (int i = 0; i < antall; i++, p = p.neste) {
-                if (p.verdi.equals(verdi)) return 1;
+                if (p.verdi.equals(verdi)) return i;
             }
             return -1;
         }
         // throw new UnsupportedOperationException();
     }
+
+
 
     @Override
     public T oppdater(int indeks, T nyverdi) { //Kilde: Kompendiet, programkode 3.3.3 b)
@@ -277,7 +278,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
             antall = 0;
             endringer++;
->>>>>>> fd13cf79a350b5bf01419ef04f1e11995e47c519
         }
     }
 
@@ -286,6 +286,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             //throw new UnsupportedOperationException();
             indeksKontroll(indeks, false);
             return finnNode(indeks).verdi;
+
+
         }
 
         @Override
