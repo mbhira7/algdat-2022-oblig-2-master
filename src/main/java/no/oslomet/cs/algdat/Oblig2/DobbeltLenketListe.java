@@ -62,20 +62,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             throw new NullPointerException("Tabellen a er null!");
         }
 
-        for (int i = 0;i < a.length;i++){
-            if (a[i] != null){
-                Node<T> p = new Node(a[i]);
-                if (hode == null){
+        for (T t : a) {
+            if (t != null) {
+                Node<T> p = new Node<>(t);
+                if (hode == null) {
                     hode = hale = p;
                     hode.forrige = null;
-                    hale.neste = null;
-                }
-                else {
+                } else {
                     hale.neste = p;
                     p.forrige = hale;
                     hale = p;
-                    hale.neste = null;
                 }
+                hale.neste = null;
                 antall++;
             }
         }
@@ -122,12 +120,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean tom() {
         //throw new UnsupportedOperationException();
-        if (hode == null){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return hode == null;
     }
 
     //
@@ -139,14 +132,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if (antall == 0){
             hode = hale = p;
             hode.forrige = null;
-            hale.neste = null;
         }
         else {
             hale.neste = p;
             p.forrige = hale;
             hale = p;
-            hale.neste = null;
         }
+        hale.neste = null;
         antall++;
         endringer++;
         return true;
