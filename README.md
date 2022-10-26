@@ -14,6 +14,7 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 * Kaja har hatt ansvar for oppgave 2 og 3.
 * Konrad har hatt ansvar for oppgave 9 og 10.
 * Bhiravina har hatt ansvar for oppgave 5 og 6.
+* Amalie har hatt ansvar for oppgave 7 og 8.
 
 # Oppgavebeskrivelse
 
@@ -46,6 +47,10 @@ I oppgave 5 bruker jeg metoden finnNode(int indeks) for å finne Noden p. Jeg op
 Dersom listen er tom opprettes det en ny Node. Hvis listen ikke er tom og 
 indeks er lik 0 legges Noden q inn på starten av lista. Dersom indeks er lik antall legges q på slutten. 
 Dersom indeks verken er lik 0 eller antall legges q mellom de to Nodene p og r.
+
+I oppgave 7 ble det laget en hjelpevariabel (Node p) som tok inn den første noden i listen, om denne ikke var null gikk varaiblene inn i en loop hvor p ble oppdatert til den neste noden og forrige sin verdi ble null. 
+
+I oppgave 8 (a) laget jeg en exception hvis iteratorendringer ikke er lik endring slik som oppgaven ønsket. (b) Instansierte en ny tpe av klassen DobbeltLenketListeIterator. (c) startet en indeksKontroll, bruker metoden finnNode med indeks-1. Denne istansieres, og bruker fjernOK og iteratorendringer.
 
 I oppgave 9 brukte jeg metoden void remove() i iterator klassen. Hvis det ikke er tillat å kalle på metoden blir det kastet en
 IllegalStateException. Hvis det viser seg at endringer er ulike kastes det Concurrrent-ModificiationException.
