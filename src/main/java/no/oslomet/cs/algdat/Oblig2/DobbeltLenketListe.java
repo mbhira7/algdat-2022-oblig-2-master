@@ -251,73 +251,95 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean fjern(T verdi) {
-        if(verdi == null) {
+        if (verdi == null) {
             return false;
         }
 
-        Node<T> node = hode.neste;
-        while(!node.verdi.equals(verdi)) {
-            if(node.neste == null) {
-                return false;
+        Node<T> current = hode;
+
+        //Første fjernes
+        if (verdi.equals(current.verdi)) {
+            if (current.neste != null) {
+                hode = current.neste;
+                hode.forrige = null;
+            } else {
+                hode = null;
+                hale = null;
             }
-            node = node.neste;
+            antall--;
+            endringer++;
+            return true;
         }
-        if (node.equals(hode.neste) && node.equals(hale.forrige)) {
-            hode.neste = null;
-            hale.forrige = null;
+
+        //Siste fjernes
+        current = hale;
+        if (verdi.equals(current.verdi)) {
+            hale = current.forrige;
+            hale.neste = null;
+            antall--;
+            endringer++;
+            return true;
         }
-        else if(node.equals(hode.neste)) {
-            hode.neste.neste.forrige = null;
-            hode.neste = hode.neste.neste;
-            node.neste = null;
+
+        //Mellom fjernes
+        current = hode.neste;
+        for (; current != null; current = current.neste) {
+            if (verdi.equals(current.verdi)) {
+                current.forrige.neste = current.neste;
+                current.neste.forrige = current.forrige;
+                antall--;
+                endringer++;
+                return true;
+            }
         }
-        else if(node.equals(hale.forrige)) {
-            hale.forrige = node.forrige;
-            node.forrige.neste = null;
-            node.forrige = null;
-        }
-        else {
-            node.forrige.neste = node.neste;
-            node.neste.forrige = node.forrige;
-        }
-        antall--;
-        endringer++;
-        return true;
+        return false;
+
+
     }
 
     @Override
     public T fjern(int indeks) {
-            //throw new UnsupportedOperationException();
+        indeksKontroll(indeks, false);
 
-            indeksKontroll(indeks, false);
+        Node<T> current = hode;
+        T verdi;
 
-            Node<T> p = finnNode(indeks);
-            Node<T> q;
+        //Første fjernes
+        if (indeks == 0) {
+            verdi = current.verdi;
 
-            if(!tom()) {
-                if(indeks == 0){
-                    q = p.neste;
-                    q.forrige = null;
-                    hode = q;
-                }
-                else if(indeks == antall - 1) {
-                    q = p.forrige;
-                    q.neste = null;
-                    hale = q;
-                }
-                else{
-                    if(p.neste != null) {
-                        q = p.forrige;
-                        Node<T> r = q.neste;
-                        p.neste = r;
-                        r.forrige = p;
-                    }
-                }
-                antall--;
-                endringer++;
+            if (current.neste != null) {
+                hode = current.neste;
+                hode.forrige = null;
+            } else {
+                hode = null;
+                hale = null;
             }
+        }
 
-            return p.verdi;
+        //Siste fjernes
+        else if (indeks == antall - 1) {
+            current = hale;
+            verdi = hale.verdi;
+
+            hale = current.forrige;
+            hale.neste = null;
+        }
+
+        //Mellom fjernes
+        else {
+            for (int i = 0; i < indeks; i++) {
+                current = current.neste;
+            }
+            verdi = current.verdi;
+
+            current.forrige.neste = current.neste;
+            current.neste.forrige = current.forrige;
+        }
+
+        antall--;
+        endringer++;
+        return verdi;
         }
 
 
