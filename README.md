@@ -13,8 +13,8 @@ Oppgaven er levert av følgende studenter:
 I oppgaven har vi hatt følgende arbeidsfordeling:
 * Kaja har hatt ansvar for oppgave 2 og 3.
 * Konrad har hatt ansvar for oppgave 9 og 10.
-* Bhiravina har hatt ansvar for oppgave 5 og 6.
-* Amalie har hatt ansvar for oppgave 7 og 8.
+* Bhiravina har hatt ansvar for oppgave 5.
+* Amalie har hatt ansvar for oppgave 6, 7, og 8.
 
 # Oppgavebeskrivelse
 
@@ -47,6 +47,8 @@ I oppgave 5 bruker jeg metoden finnNode(int indeks) for å finne Noden p. Jeg op
 Dersom listen er tom opprettes det en ny Node. Hvis listen ikke er tom og 
 indeks er lik 0 legges Noden q inn på starten av lista. Dersom indeks er lik antall legges q på slutten. 
 Dersom indeks verken er lik 0 eller antall legges q mellom de to Nodene p og r.
+
+I oppgave 6 var rett fram, gjorde det som ble beskrevet i oppgaveteksten ved å lage pekere som fjernet første, siste og mellom verdi.
 
 I oppgave 7 ble det laget en hjelpevariabel (Node p) som tok inn den første noden i listen, om denne ikke var null gikk varaiblene inn i en loop hvor p ble oppdatert til den neste noden og forrige sin verdi ble null. 
 
