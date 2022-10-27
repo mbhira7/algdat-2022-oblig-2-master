@@ -47,6 +47,11 @@ T oppdater(int indeks, T nyverdi) bytter ut en en verdi på plass indeks, med en
 Liste<T> subliste(int fra, int til) lager en ny liste i intervallet [fra,til) og legger til elementer med leggInn(verdi).
 Vi bruker fratilKontroll() for å passe på at intervallet er gyldig.
 
+I oppgave 4 lager vi en metode som skal returnere indeksen til verdi hvis den finnes i listen og 
+den skal returnere -1 hvis den finnes, det gjør vi ved å returnere ideksen/posisjonen til verdi hvis 
+den finnes i listen, deretter sjekker vi i koden om det sendes inn noen nullverdier. vi har også metoden
+boolean som skal returnere true eller false avhengig om listen er tom eller ikke. 
+
 I oppgave 5 bruker jeg metoden finnNode(int indeks) for å finne Noden p. Jeg oppretter så en ny Node q med verdien vi får som parameter.
 Dersom listen er tom opprettes det en ny Node. Hvis listen ikke er tom og 
 indeks er lik 0 legges Noden q inn på starten av lista. Dersom indeks er lik antall legges q på slutten. 
