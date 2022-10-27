@@ -14,6 +14,7 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 * Else har hatt hovedansvar for oppgave 2, 4, og 6. 
 * Fatima har hatt hovedansvar for  oppgave 7 og 8. 
 * Konrad har hatt ansvar for oppgave 9 og 10.
+* Hoda har hatt ansvar for oppgave 1 og 4 
 
 # Oppgavebeskrivelse
 
